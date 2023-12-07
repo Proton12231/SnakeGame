@@ -1,0 +1,47 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+}
+
+body {
+  background-color: #272727;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  #myCanvas {
+    border: 5px solid lightgreen;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 320px;
+    width: 320px;
+  }
+  #eScore {
+    color: white;
+    margin-top: 1rem;
+    padding: 10px;
+    font-size: 1.25rem;
+  }
+  #finalScore {
+    color: white;
+    padding: 10px;
+    font-size: 1.25rem;
+  }
+  #Start {
+    padding: 0.25rem 0.5rem;
+    font-size: 1.15rem;
+    background-color: yellow;
+    display: block;
+    margin-top: 15px;
+  }
+}
