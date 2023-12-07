@@ -63,6 +63,15 @@ createSnake();
 let myFruit = new Fruit();
 //创建绘画蛇的函数
 function draw() {
+  //判断是否撞到自己
+  for (let i = 1; i < snake.length; i++) {
+    if (snake[i].x == snake[0].x && snake[i].y == snake[0].y) {
+      alert("你吃到自己了！");
+      clearInterval(game);
+      return 0;
+    }
+  }
+
   //绘制背景
   ctx.fillStyle = "#272727";
   ctx.fillRect(0, 0, c.width, c.height);
@@ -100,6 +109,7 @@ function draw() {
   //移动蛇
   let snakeX = snake[0].x;
   let snakeY = snake[0].y;
+
   if (d == "Left") {
     snakeX -= unit;
   } else if (d == "Up") {
@@ -116,7 +126,11 @@ function draw() {
     y: snakeY,
   };
 
-  snake.pop();
+  if (newHead.x == myFruit.x && newHead.y == myFruit.y) {
+  } else {
+    snake.pop();
+  }
+
   snake.unshift(newHead);
 }
 
