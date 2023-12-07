@@ -88,6 +88,7 @@ function changeDirection(e) {
 
 let HighScore = 0;
 let score = 0;
+getHighScore();
 document.getElementById("finalScore").innerHTML = "最高分数：" + HighScore;
 document.getElementById("eScore").innerHTML = "当前分数：" + score;
 
@@ -159,12 +160,29 @@ function draw() {
   if (newHead.x == myFruit.x && newHead.y == myFruit.y) {
     myFruit.pickALocation();
     score++;
+    setHighScore();
     document.getElementById("eScore").innerHTML = "当前分数：" + score;
+    document.getElementById("finalScore").innerHTML = "最高分数：" + HighScore;
   } else {
     snake.pop();
   }
 
   snake.unshift(newHead);
+}
+
+function getHighScore() {
+  if (localStorage.getItem("HighScore") == null) {
+    HighScore = 0;
+  } else {
+    HighScore = Number(localStorage.getItem("HighScore"));
+  }
+}
+
+function setHighScore() {
+  if (score > HighScore) {
+    localStorage.setItem("HighScore", score);
+    HighScore = score;
+  }
 }
 
 let game = setInterval(draw, 100);
