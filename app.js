@@ -9,21 +9,6 @@ const column = c.width / unit;
 //定义一个存放蛇身体的数组
 let snake = [];
 
-//定义一个蛇方向变量
-
-window.addEventListener("keydown", changeDirection);
-let d = "Right";
-function changeDirection(e) {
-  if (e.key == "ArrowLeft" && d != "Right") {
-    d = "Left";
-  } else if (e.key == "ArrowUp" && d != "Down") {
-    d = "Up";
-  } else if (e.key == "ArrowRight" && d != "Left") {
-    d = "Right";
-  } else if (e.key == "ArrowDown" && d != "Up") {
-    d = "Down";
-  }
-}
 //创建蛇的函数
 function createSnake() {
   snake[0] = {
@@ -85,6 +70,26 @@ class Fruit {
 
 createSnake();
 let myFruit = new Fruit();
+
+//定义一个蛇方向变量
+window.addEventListener("keydown", changeDirection);
+let d = "Right";
+function changeDirection(e) {
+  if (e.key == "ArrowLeft" && d != "Right") {
+    d = "Left";
+  } else if (e.key == "ArrowUp" && d != "Down") {
+    d = "Up";
+  } else if (e.key == "ArrowRight" && d != "Left") {
+    d = "Right";
+  } else if (e.key == "ArrowDown" && d != "Up") {
+    d = "Down";
+  }
+}
+
+let HighScore = 0;
+let score = 0;
+document.getElementById("finalScore").innerHTML = "最高分数：" + HighScore;
+document.getElementById("eScore").innerHTML = "当前分数：" + score;
 //创建绘画蛇的函数
 function draw() {
   //判断是否撞到自己
