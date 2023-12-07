@@ -9,6 +9,9 @@ const column = c.width / unit;
 //定义一个存放蛇身体的数组
 let snake = [];
 
+//定义一个蛇方向变量
+let d = "Right";
+
 //创建蛇的函数
 function createSnake() {
   snake[0] = {
@@ -41,7 +44,6 @@ function draw() {
   ctx.fillRect(0, 0, c.width, c.height);
 
   //绘制蛇
-
   for (let i = 0; i < snake.length; i++) {
     //判断蛇头蛇身
     if (i == 0) {
@@ -49,11 +51,32 @@ function draw() {
     } else {
       ctx.fillStyle = "lightblue";
     }
-
     ctx.strokeStyle = "white";
     ctx.fillRect(snake[i].x, snake[i].y, unit, unit);
     ctx.strokeRect(snake[i].x, snake[i].y, unit, unit);
   }
+
+  //移动蛇
+  let snakeX = snake[0].x;
+  let snakeY = snake[0].y;
+  if (d == "Left") {
+    snakeX -= unit;
+  } else if (d == "Up") {
+    snakeY -= unit;
+  } else if (d == "Right") {
+    snakeX += unit;
+  } else if (d == "Down") {
+    snakeY += unit;
+  }
+
+  //将新的头部坐标插入进去
+  let newHead = {
+    x: snakeX,
+    y: snakeY,
+  };
+
+  snake.pop();
+  snake.unshift(newHead);
 }
 
 let game = setInterval(draw, 100);
