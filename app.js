@@ -90,6 +90,7 @@ let HighScore = 0;
 let score = 0;
 document.getElementById("finalScore").innerHTML = "最高分数：" + HighScore;
 document.getElementById("eScore").innerHTML = "当前分数：" + score;
+
 //创建绘画蛇的函数
 function draw() {
   //判断是否撞到自己
@@ -157,6 +158,8 @@ function draw() {
 
   if (newHead.x == myFruit.x && newHead.y == myFruit.y) {
     myFruit.pickALocation();
+    score++;
+    document.getElementById("eScore").innerHTML = "当前分数：" + score;
   } else {
     snake.pop();
   }
