@@ -10,8 +10,20 @@ const column = c.width / unit;
 let snake = [];
 
 //定义一个蛇方向变量
-let d = "Right";
 
+window.addEventListener("keydown", changeDirection);
+let d = "Right";
+function changeDirection(e) {
+  if (e.key == "ArrowLeft" && d != "Right") {
+    d = "Left";
+  } else if (e.key == "ArrowUp" && d != "Down") {
+    d = "Up";
+  } else if (e.key == "ArrowRight" && d != "Left") {
+    d = "Right";
+  } else if (e.key == "ArrowDown" && d != "Up") {
+    d = "Down";
+  }
+}
 //创建蛇的函数
 function createSnake() {
   snake[0] = {
