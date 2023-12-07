@@ -57,6 +57,30 @@ class Fruit {
     ctx.fillStyle = "yellow";
     ctx.fillRect(this.x, this.y, unit, unit);
   }
+
+  pickALocation() {
+    let overLapping = false;
+    let new_x;
+    let new_y;
+    function cheackOverlapping(new_x, new_y) {
+      for (let i = 0; i < snake.length; i++) {
+        if (new_x == snake[i].x && new_y == snake[i].y) {
+          overLapping = true;
+        } else {
+          overLapping = false;
+        }
+      }
+    }
+    do {
+      new_x = Math.floor(Math.random() * column) * unit;
+      new_y = Math.floor(Math.random() * row) * unit;
+      cheackOverlapping(new_x, new_y);
+    } while (overLapping);
+    {
+      this.x = new_x;
+      this.y = new_y;
+    }
+  }
 }
 
 createSnake();
@@ -127,6 +151,7 @@ function draw() {
   };
 
   if (newHead.x == myFruit.x && newHead.y == myFruit.y) {
+    myFruit.pickALocation();
   } else {
     snake.pop();
   }
