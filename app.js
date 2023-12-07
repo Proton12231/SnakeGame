@@ -47,13 +47,28 @@ function createSnake() {
   };
 }
 
-createSnake();
+class Fruit {
+  constructor() {
+    this.x = Math.floor(Math.random() * column) * unit;
+    this.y = Math.floor(Math.random() * row) * unit;
+  }
 
+  drawFruit() {
+    ctx.fillStyle = "yellow";
+    ctx.fillRect(this.x, this.y, unit, unit);
+  }
+}
+
+createSnake();
+let myFruit = new Fruit();
 //创建绘画蛇的函数
 function draw() {
   //绘制背景
   ctx.fillStyle = "#272727";
   ctx.fillRect(0, 0, c.width, c.height);
+
+  //调用绘制果实的函数
+  myFruit.drawFruit();
 
   //绘制蛇
   for (let i = 0; i < snake.length; i++) {
@@ -67,6 +82,7 @@ function draw() {
     ctx.fillRect(snake[i].x, snake[i].y, unit, unit);
     ctx.strokeRect(snake[i].x, snake[i].y, unit, unit);
 
+    //设定蛇的身体可以穿墙
     if (snake[i].x >= c.width) {
       snake[i].x = 0;
     }
